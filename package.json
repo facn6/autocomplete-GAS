@@ -1,0 +1,20 @@
+{
+  "name": "autocomplete-gas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facn6/autocomplete-GAS.git"
+  },
+  "author": "Ahdab Serhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/facn6/autocomplete-GAS/issues"
+  },
+  "homepage": "https://github.com/facn6/autocomplete-GAS#readme"
+}
