@@ -11,21 +11,17 @@ const getMatches = (e) => {
         .catch((error) => {
             console.log(error);
         });
-
 }
 
-const getMatches = (e) => {
+const getResult = (e) => {
     const val = e.target.value;
     console.log(e.target.value);
-    if (val.length < 2) {
-        
-    }
+    // check a valid word before api call...
 
 }
 
 
 // function displayMatches () {
-//     const matchArray = findMatches(this.value, cities)
 //     const html = matchArray.map(place => {
 //         const regex = new RegExp(this.value, 'gi');
 //         const cityName = place.city.replace(regex, `<span class="h1">${this.value}</span>`);
