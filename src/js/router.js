@@ -1,6 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
+const autoComplete = require('./autoComplete');
+const words = require('../data/words.json');
+
+const countIndex = autoComplete.buildCountIndex(words);
+
 const router = (req, res) => {
     const url = req.url;
     const extension = url.split('.').length > 1 ? url.split('.')[1] : 'html';
@@ -9,7 +14,7 @@ const router = (req, res) => {
         css: "text/css",
         png: "image/x-icon",
         js: "application/javascript"
-    };
+    }; 
 
     if (url === '/' || url === '/style.css' || url === '/assets/search-icon.png') {
         const folder = extension == 'png' ? '' : 'view/';
