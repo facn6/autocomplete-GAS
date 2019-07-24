@@ -9,6 +9,7 @@ const getMatches = (e) => {
             .then((data) => {
                 data.words.map(word => {
                     const wordSuggestion = document.createElement("li");
+                    wordSuggestion.addEventListener('onclick', getResult);
                     wordSuggestion.classList.add('word')
                     wordSuggestion.innerText = word;
                     suggestions.appendChild(wordSuggestion);
@@ -22,6 +23,7 @@ const getMatches = (e) => {
         prompt.innerText = "Search for a word";
         suggestions.appendChild(prompt);
     }
+
 }
 
 const getResult = (e) => {
@@ -30,7 +32,6 @@ const getResult = (e) => {
     if (val.length < 1) {
 
     }
-
 }
 
 const searchInput = document.querySelector('.search-bar');
