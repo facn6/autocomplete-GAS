@@ -1,7 +1,26 @@
 const test = require('tape');
+const autoComplete = require('./src/js/autoComplete.js');
 
-test('Demo test to see if anything happens', (t) => {
-    t.deepEquals(1, 1, "tests actually run");
+const testObj = {
+    "words": ["me","va","zo","za","yu","abs","vet","veg","vee","vaw","vav","sean","seam","vaal","wins","scye", "ought","valoo","balsa","vater","balti"]
+}
+const testObjCopy = {
+    "words": ["me","va","zo","za","yu","abs","vet","veg","vee","vaw","vav","sean","seam","vaal","wins","scye", "ought","valoo","balsa","vater","balti"]
+}
+const testStr = 'va';
+const testStrCopy = 'va';
+const testCap = 'VA'
+
+test('Autocomplete works as pure function', (t) => {
+    const actual = autoComplete(testStr, testObj)
+    const actualCap = autoComplete(testCap, testObj)
+    const actual2 = autoComplete(testStr, testObj)
+    const expected = ["va", "vaw", "vav", "vaal", "valoo"]
+    t.deepEquals(actual, expected, "gives five results of increasing length");
+    t.deepEquals(testObj, testObjCopy, "does not mutate given wordlist");
+    t.deepEquals(testStr, testStrCopy, "does not mutate given string");
+    t.deepEquals(actual2, expected, "given same arguments gives same results");
+    t.deepEquals(actualCap, expected, "Input string is case insensitive");
     t.end()
 })
   
