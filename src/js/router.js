@@ -30,9 +30,12 @@ const router = (req, res) => {
             }
         });
     } else if (url.slice(0, 15) == '/api/word-list/') {
-        const search = url.slice(15);
-        console.log('running api call');
-        
+        const searchTerm = url.slice(15);
+        const wordList = {
+            "words" : autoComplete.filterWords(searchTerm, words, countIndex)
+        }
+        res.writeHead(200, {'content-type': "application/json"});
+        res.end(JSON.stringify(wordList));        
     } else {
         res.writeHead(404, {
             'content-type': 'text/plain'
