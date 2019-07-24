@@ -1,16 +1,27 @@
 
-
 const getMatches = (e) => {
-    console.log(this);
-    console.log(e.target.value);
-    fetch(`api/word-list/${e.target.value}`)
-        .then(response => response.json())
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    while (suggestions.hasChildNodes()) {
+        suggestions.removeChild(suggestions.lastChild);
+    }
+    if(e.target.value.length > 0) {
+        fetch(`api/word-list/${e.target.value}`)
+            .then(response => response.json())
+            .then((data) => {
+                data.words.map(word => {
+                    const wordSuggestion = document.createElement("li");
+                    wordSuggestion.classList.add('word')
+                    wordSuggestion.innerText = word;
+                    suggestions.appendChild(wordSuggestion);
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    } else {
+        const prompt = document.createElement("li");
+        prompt.innerText = "Search for a word";
+        suggestions.appendChild(prompt);
+    }
 
 }
 
@@ -22,25 +33,6 @@ const getResult = (e) => {
     }
 
 }
-
-
-// function displayMatches () {
-//     const matchArray = findMatches(this.value, cities)
-//     const html = matchArray.map(place => {
-//         const regex = new RegExp(this.value, 'gi');
-//         const cityName = place.city.replace(regex, `<span class="h1">${this.value}</span>`);
-//         const stateName = place.state.replace(regex, `<span class="h1">${this.value}</span>`);
-//         return `
-//             <li>
-//                 <span class="name">${cityName}, ${stateName}</span>
-//                 <span class="population">${numberWithcommas(place.population)}</span>
-//             </li>
-//             `;
-//     }).join('');
-//     suggestions.innerHTML = html;
-//     console.log(this.value);
-// }
-
 
 const searchInput = document.querySelector('.search-bar');
 const suggestions = document.querySelector('.suggestions');
