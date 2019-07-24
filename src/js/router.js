@@ -14,9 +14,9 @@ const router = (req, res) => {
         css: "text/css",
         png: "image/x-icon",
         js: "application/javascript"
-    }; 
+    };
 
-    if (url === '/' || url === '/style.css' || url === '/assets/search-icon.png') {
+    if (url === '/' || url === '/style.css' || url === '/app.js'|| url === '/assets/search-icon.png') {
         const folder = extension == 'png' ? '' : 'view/';
         const pathUrl = url === '/' ? 'index.html' : url;
         const filepath = path.join(__dirname, '..', '..', '/public/', folder, pathUrl);
@@ -29,6 +29,10 @@ const router = (req, res) => {
                 res.end(file);
             }
         });
+    } else if (url.slice(0, 15) == '/api/word-list/') {
+        const search = url.slice(15);
+        console.log('running api call');
+        
     } else {
         res.writeHead(404, {
             'content-type': 'text/plain'
