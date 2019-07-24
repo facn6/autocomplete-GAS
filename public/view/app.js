@@ -22,7 +22,6 @@ const getMatches = (e) => {
         prompt.innerText = "Search for a word";
         suggestions.appendChild(prompt);
     }
-
 }
 
 const getResult = (e) => {
