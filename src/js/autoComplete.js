@@ -9,7 +9,6 @@ const buildCountIndex = (words) => {
             obj[length] = ind;
         }
     });
-    console.log('------- running Count Index -------');
     
     return obj;
 };

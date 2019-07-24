@@ -3,13 +3,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Courier New', Courier, monospace;
 }
+
 
 .description {
     margin: 40px 40px;
     text-align: center;
     color: black;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 .search-sec {
@@ -27,7 +28,7 @@ body {
     width: 70vw;
     height: 10%;
     font-size: 30px;
-    font-family: 'Courier New', Courier, monospace;
+    outline: none;
 }
 
 .search-icon {
@@ -36,23 +37,40 @@ body {
     margin: 20px 20px;
 }
 
-.list-section
-{
-    text-align: center;
-    width: 70%;
+/* ------- Autocomplete list --------*/
+
+.suggestions {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    perspective: 40px;
+}
+
+.suggestions li {
     background: white;
-    font-family: 'Courier New', Courier, monospace;
-    
-}
-
-.list-container{
+    list-style: none;
+    border-bottom: 1px solid #D8D8D8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+    margin: 0;
+    padding: 5px 25px;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    list-style-type:none;
-
+    justify-content: space-between;
+    text-transform: capitalize;
+  border-radius: .5rem;
 }
-li{
-    margin: 10px 10px;
-    border-left: 3px solid #17252a;
+
+.suggestions li:hover {
+    color: orange;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.suggestions li:nth-child(even) {
+    transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+    background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%);
+}
+
+.suggestions li:nth-child(odd) {
+    transform: perspective(100px) rotateX(-3deg) translateY(3px);
+    background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
 }
