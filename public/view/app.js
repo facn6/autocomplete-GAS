@@ -14,11 +14,11 @@ const getMatches = (e) => {
 
 }
 
-const getMatches = (e) => {
+const getResult = (e) => {
     const val = e.target.value;
     console.log(e.target.value);
-    if (val.length < 2) {
-        
+    if (val.length < 1) {
+
     }
 
 }
