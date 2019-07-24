@@ -1,27 +1,25 @@
-// const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
-// const cities = [];
-
-// fetch(endpoint)
-//   .then(response => response.json())
-//   .then((data) => {
-//     cities.push(...data);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
 
 const getMatches = (e) => {
     console.log(this);
     console.log(e.target.value);
-    fetch(`api/word-list/${e.target.value}`);
+    fetch(`api/word-list/${e.target.value}`)
         .then(response => response.json())
         .then((data) => {
-            
+            console.log(data);
         })
         .catch((error) => {
-        console.log(error);
+            console.log(error);
         });
+
+}
+
+const getMatches = (e) => {
+    const val = e.target.value;
+    console.log(e.target.value);
+    if (val.length < 2) {
+        
+    }
 
 }
 
@@ -47,5 +45,5 @@ const getMatches = (e) => {
 const searchInput = document.querySelector('.search-bar');
 const suggestions = document.querySelector('.suggestions');
 
-// searchInput.addEventListener('change', getResult);
+searchInput.addEventListener('change', getResult);
 searchInput.addEventListener('keyup', getMatches);
