@@ -16,13 +16,11 @@ const buildCountIndex = (words) => {
 
 const filterWords = (testStr, words, countIndex) => {
     const str = testStr.toLowerCase();
-
     let wordLengthLimit = str.length + 6 < Object.keys(countIndex).length + 1 ? str.length + 6 : 'end'
 
     let list = [];
     let count = countIndex[str.length + 1];
     let limit = countIndex[wordLengthLimit];
-
     do {
         if (words.words[count].slice(0, str.length) == str) {
             list.push(words.words[count])
