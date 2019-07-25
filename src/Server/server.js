@@ -1,7 +1,7 @@
 const http = require('http');
-const router = require('./src/js/router.js');
-const words = require('./src/data/words.json');
-const autoComplete = require('./src/js/autoComplete');
+const router = require('./router');
+const words = require('../Database/words');
+const autoComplete = require('../Helpers/autoComplete');
 
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 4000;

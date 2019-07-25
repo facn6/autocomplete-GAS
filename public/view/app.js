@@ -39,10 +39,7 @@ const getResult = (e) => {
     if (val.length < 1) {
         alert("Enter A Word To Search !!");
     }
-    
-  
 }
-
 
 const searchInput = document.querySelector('.search-bar');
 const suggestions = document.querySelector('.suggestions');

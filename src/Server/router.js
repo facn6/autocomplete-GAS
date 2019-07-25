@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const autoComplete = require('./autoComplete');
-const words = require('../data/words.json');
+const autoComplete = require('../Helpers/autoComplete.js');
+const words = require('../Database/words.json');
 
 const countIndex = autoComplete.buildCountIndex(words);
 
