@@ -28,14 +28,24 @@ const getMatches = (e) => {
 
 const getResult = (e) => {
     const val = e.target.value;
-    console.log(e.target.value);
+    e.preventDefault(); 
     if (val.length < 1) {
-
+        alert("Enter A Word To Search !!");
     }
 }
+
 
 const searchInput = document.querySelector('.search-bar');
 const suggestions = document.querySelector('.suggestions');
 
 searchInput.addEventListener('change', getResult);
 searchInput.addEventListener('keyup', getMatches);
+searchInput.addEventListener('keypress',function(e){
+    var key = e.which || e.keyCode;
+   
+
+    if (key === 13) { 
+      getResult(e);
+        }
+    }
+);
