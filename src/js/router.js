@@ -40,7 +40,7 @@ const router = (req, res) => {
         res.writeHead(404, {
             'content-type': 'text/plain'
         });
-        res.end('404 server error');
+        res.end('404: page not found');
     }
 }
 
