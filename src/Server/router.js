@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const querystring = require('querystring');
+const url = require('url');
 
 const autoComplete = require('../Helpers/autoComplete.js');
 const words = require('../Database/words.json');
@@ -7,8 +9,9 @@ const words = require('../Database/words.json');
 const countIndex = autoComplete.buildCountIndex(words);
 
 const router = (req, res) => {
-    const url = req.url;
-    const extension = url.split('.').length > 1 ? url.split('.')[1] : 'html';
+    const urlObj = url.parse(req.url);
+    const pathName = urlObj.pathname
+    const extension = pathName.split('.').length > 1 ? pathName.split('.')[1] : 'html';
     const extensionObj = {
         html: "text/html",
         css: "text/css",
@@ -16,10 +19,10 @@ const router = (req, res) => {
         js: "application/javascript"
     };
 
-    if (url === '/' || url === '/style.css' || url === '/app.js'|| url === '/assets/search-icon.png') {
+    if (pathName === '/' || pathName === '/style.css' || pathName === '/app.js'|| pathName === '/assets/search-icon.png') {
         const folder = extension == 'png' ? '' : 'view/';
-        const pathUrl = url === '/' ? 'index.html' : url;
-        const filepath = path.join(__dirname, '..', '..', '/public/', folder, pathUrl);
+        const endPath = pathName === '/' ? 'index.html' : pathName;
+        const filepath = path.join(__dirname, '..', '..', '/public/', folder, endPath);
         fs.readFile(filepath, (err, file) => {
             if (err) {
                 res.writeHead(500, {'content-type': 'text/plain'});
@@ -29,10 +32,10 @@ const router = (req, res) => {
                 res.end(file);
             }
         });
-    } else if (url.slice(0, 15) == '/api/word-list/') {
-        const searchTerm = url.slice(15);
+    } else if (pathName == '/api/word-list') {
+        const word = querystring.parse(urlObj.query).word
         const wordList = {
-            "words" : autoComplete.filterWords(searchTerm, words, countIndex)
+            "words" : autoComplete.filterWords(word, words, countIndex)
         }
         res.writeHead(200, {'content-type': "application/json"});
         res.end(JSON.stringify(wordList));        

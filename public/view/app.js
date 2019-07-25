@@ -1,10 +1,11 @@
+const wordListApi = "api/word-list";
 
 const getMatches = (e) => {
     while (suggestions.hasChildNodes()) {
         suggestions.removeChild(suggestions.lastChild);
     }
     if(e.target.value.length > 0) {
-        fetch(`api/word-list/${e.target.value}`)
+        fetch(`${wordListApi}?word=${e.target.value}`)
             .then(response => response.json())
             .then((data) => {
                 if(data.words.length==0){
