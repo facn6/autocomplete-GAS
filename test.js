@@ -1,5 +1,5 @@
 const test = require('tape');
-const autoComplete = require('./src/js/autoComplete.js');
+const autoComplete = require('./src/Helpers/autoComplete');
 
 const testObj = {
     "words": ["me","va","zo","za","yu","abs","vet","veg","vee","vaw","vav","sean","seam","vaal","wins","scye", "ought","valoo","valsa","vater","valti"]
