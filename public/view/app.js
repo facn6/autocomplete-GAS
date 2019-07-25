@@ -7,6 +7,11 @@ const getMatches = (e) => {
         fetch(`api/word-list/${e.target.value}`)
             .then(response => response.json())
             .then((data) => {
+                if(data.words.length==0){
+                    const wordExistence = document.createElement("li");
+                    wordExistence.innerText = "Word Doesn't Exist";
+                    suggestions.appendChild(wordExistence);
+                }
                 data.words.map(word => {
                     const wordSuggestion = document.createElement("li");
                     wordSuggestion.addEventListener('onclick', getResult);
@@ -18,7 +23,9 @@ const getMatches = (e) => {
             .catch((error) => {
                 console.log(error);
             });
-    } else {
+    }
+
+    else {
         const prompt = document.createElement("li");
         prompt.innerText = "Search for a word";
         suggestions.appendChild(prompt);
@@ -32,6 +39,8 @@ const getResult = (e) => {
     if (val.length < 1) {
         alert("Enter A Word To Search !!");
     }
+    
+  
 }
 
 
